@@ -1,15 +1,32 @@
 body {
     font-family: 'Lato', sans-serif;
     margin: 0;
-    padding: 0 5%;
+    padding: 0 10%;
     background-color: #f4f4f4;
     color: #000;
     flex-direction: column;
 }
 
+a {
+    color: blue; /* Set link text color */
+    text-decoration: none; /* Remove default underline */
+}
+
+.hidden-link {
+    color: black;
+}
+
+a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+p {
+    font-size: 18px;
+}
+
 .aewsome {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
 .rainbow-text {
@@ -34,6 +51,55 @@ body {
     }
 }
 
-p {
-    font-size: large;
+.introduction {
+    
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+
+.introduction p {
+    display: inline; /* Set paragraphs to display as inline */
+    font-size: 20px;
+}
+
+.uwu {
+    font-family: 'Comic Sans MS', sans-serif;
+}
+
+h2 {
+    margin-bottom: 40px;
+}
+
+.fact {
+    margin-bottom: 30px;
+}
+
+.site-footer {
+    margin-top: 50px;
+    background-color: #e0e0e0; /* Darker background color */
+    color: #333; /* Text color */
+    padding: 20px 0; /* Adjust padding as needed */
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    margin-left: -10%;
+}
+
+.site-footer p {
+    margin: 5px 0; /* Adjust paragraph margins */
+}
+
+.site-footer a {
+    color: #333; /* Link color */
+    text-decoration: none;
+}
+
+.site-footer a:hover {
+    text-decoration: underline; /* Hover style for links */
+}
+
+.cat {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
 }
