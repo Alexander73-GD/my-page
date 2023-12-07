@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Terms of Service</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&amp;display=swap">
+    <link rel="stylesheet" href="style.css">  
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="go-back-link"> &lt; Go Back</a>
+        <div class="aewsome">
+            <h1>Terms of Service</h1>
+        </div>
+        <div class="tos-content">
+            <p>
+                Between you and me, I have no idea what those are exactly.<br>
+                I know you're supposed to read and accept a bunch of things so here you have some boxes for you to check. Enjoy yourself!
+            </p>
+        </div>
+    </div>
+    <div class="blank"></div>
+    <div id="secret" class="secret">
+        <label id="golden-label" class="golden-label">
+            Congratulations! You discovered the super secret <span class="golden-text">GOLDEN CHECKBOX</span>&nbsp
+        </label>
+        <input type="checkbox" id="golden-checkbox" class="golden-checkbox">
+    </div>
+    <div id="secret-two-electric-boogaloo" class="secret-two-electric-boogaloo">
+        There are no more secrets. Stop it.
+    </div>
+    <script>
+        const goldenCheckbox = document.getElementById("golden-checkbox");
+        const secretTwoBoogaloo = document.getElementById('secret-two-electric-boogaloo');
+
+        let clickCounter = 0;
+
+        goldenCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                clickCounter++;
+                if (clickCounter >= 5) {
+                    secretTwoBoogaloo.style.display = 'flex';
+                } else {
+                    secretTwoBoogaloo.style.display = 'none';
+                }
+            }
+        });
+
+        function randomPosition() {
+            const checkboxes = 20; // Number of checkboxes
+            const body = document.body;
+            const width = body.clientWidth;
+            const height = body.clientHeight;
+
+            for (let i = 0; i < checkboxes; i++) {
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.className = 'checkbox';
+                checkbox.style.top = Math.random() * (height / 2 - 100) + (height / 2) + 'px'; // Halfway down the page
+                checkbox.style.left = Math.random() * (width - 40) + 'px'; // Random horizontal position
+
+                checkbox.addEventListener('change', checkAllChecked); // Add event listener to each checkbox
+
+                body.appendChild(checkbox);
+            }
+        }
+
+        function checkAllChecked() {
+            const checkboxes = document.querySelectorAll('.checkbox');
+            let allChecked = true;
+
+            checkboxes.forEach(checkbox => {
+                if (!checkbox.checked) {
+                    allChecked = false;
+                }
+            });
+
+            if (allChecked) {
+                const secretDiv = document.getElementById('secret');
+                secretDiv.style.display = 'flex';
+            }
+        }        
+
+        
+
+        window.onload = randomPosition;
+    </script>
+</body>
+</html>

@@ -103,3 +103,78 @@ h2 {
     display: flex;
     justify-content: center; /* Center the content horizontally */
 }
+
+.go-back-link {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    text-decoration: none;
+    color: blue;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.go-back-link:hover {
+    text-decoration: underline;
+}
+
+.blank {
+    height: 300px;
+}
+
+.checkbox {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border: 1px solid #000;
+    cursor: pointer;
+}
+
+.secret, .secret-two-electric-boogaloo {
+    width: 100%;
+    display: none;
+    justify-content: center;
+    font-size: 32px;
+}
+
+/* Style for the text and checkbox */
+.golden-text {
+    font-weight: bold;
+    color: #ffd700; /* Golden color */
+}
+
+.golden-checkbox {
+    appearance: none; /* Hide default checkbox */
+    width: 32px;
+    height: 32px;
+    border: 4px solid #ffd700; /* Golden border */
+    border-radius: 5px;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+}
+
+/* Style the checkbox checked state */
+.golden-checkbox:checked {
+    background-color: #ffd700; /* Golden fill when checked */
+}
+
+/* Hide the default checkbox appearance */
+.golden-checkbox::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    background-color: #ffd700; /* Golden inner box */
+    opacity: 0; /* Initially hidden */
+}
+
+/* Show the golden inner box when checkbox is checked */
+.golden-checkbox:checked::before {
+    opacity: 1;
+}
