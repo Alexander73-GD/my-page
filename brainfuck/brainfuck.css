@@ -14,7 +14,11 @@ h1 {
     content: " (NOR.bf)";
     display: none;
 }
-#hidden-brainfuck:hover::after, #hidden-nor:hover::after {
+#hidden-xor::after {
+    content: " (XOR.bf)";
+    display: none;
+}
+#hidden-brainfuck:hover::after, #hidden-nor:hover::after, #hidden-xor:hover::after {
     display: inline-block;
 }
 
