@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>XOR.bf</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&amp;display=swap">
+    <link rel="stylesheet" href="../style.css">  
+    <link rel="stylesheet" href="brainfuck.css"> 
+</head>
+<body>
+    <a href="index.html" class="go-back-link"> &lt; Go Back</a>
+    <h1 id="hidden-nor" class="brainfuck">-[--->+<]>-------.+.+++.[-->+<]>+++++.+++[->++<]>.++++.</h1>
+    <p>A XOR gate made of NAND gates looks like this, or so says Wikipedia.</p><br>
+        <div class="gates">
+            <img src="../img/XOR.png" width="420" height="150">           
+        </div>
+    <p>For our purpose, we should assign a number to every input/output. This will serve as a visual guide when editing the template.</p>
+        <div class="gates">
+            <img src="../img/XORbf.png" width="420" height="150">       
+        </div>
+    <p>Now we can dissect each step to know the values in the SVR that we'll use.</p>
+    <div class="code">
+        <pre>
+<code>First, we represent the NAND operations. Each one of these is a <b>block</b> of the code.
+1 2 = 3
+1 3 = 4
+2 3 = 5
+4 5 = 6
+
+Then, the necessary steps to get there.
+0 0       Initial values at input cells (A and B)
+1 0       Replace A
+1 2       Replace B
+1 2 = 3   NAND Operation
+1 2
+1 3
+1 3 = 4
+2 3
+2 3
+2 3 = 5
+4 3
+4 5
+4 5 = 6</code></pre></div>
+<p><b>Important note:</b> in this case, unlike in NOR.bf, some values don't change between iterations. To avoid problems and complexity, the template simply overwrites these cases with the same value.</p>
+<p>Once we know all the values, we can add all the <span class="brainfuck">></span> in the placeholders.</p>
+<div class="code"><code><pre><span class="bf-comment">    · · · · · · · · · · · · SETUP · · · · · · · · · · · ·</span>
+    
+->>>>>>>>>>>-->
+, <span class="bf-comment">value at 1</span>
+>
+, <span class="bf-comment">value at 2</span>
+<<
+
+<span class="bf-comment">    · · · · · · · FIRST ITERATION (1 2 = 3) · · · · · · · 
+    
+Input Replacement A=1 ('1' 0)</span>
+> <span class="bf-placeholder">{POSITION}</span>
+[ +[-<+]- >+ ++[-->++]-- <+>
+> <span class="bf-placeholder">{POSITION}</span>
+-] ++[--<++]-- <[ ++[-->++]--
+> <span class="bf-placeholder">{POSITION}</span>
++ ++[--<++]-- <-]>
+
+<span class="bf-comment">Input Replacement B=2 (1 '2')</span>
+>> <span class="bf-placeholder">{POSITION}</span>
+[ +[-<+]- >>+ ++[-->++]-- <+>
+>> <span class="bf-placeholder">{POSITION}</span>
+-] ++[--<++]-- <[ ++[-->++]--
+>> <span class="bf-placeholder">{POSITION}</span>
++ ++[--<++]-- <-]>
+
+<span class="bf-comment">NAND Operation & Storing Result (at 3)</span>
++[-<+]-> >>+<<[>[>->]] +[-<+]- >>>[ ++[-->++]--
+>>> <span class="bf-placeholder">{OUTPUT}</span>
++ +[-<+]- >>>-] <[-]<[-] ++[-->++]--
+
+<span class="bf-comment">    · · · · · · · SECOND ITERATION (1 3 = 4) · · · · · · ·
+    
+Input Replacement A=1 ('1' 2)</span>
+> <span class="bf-placeholder">{POSITION}</span>
+[ +[-<+]- >+ ++[-->++]-- <+>
+> <span class="bf-placeholder">{POSITION}</span>
+-] ++[--<++]-- <[ ++[-->++]--
+> <span class="bf-placeholder">{POSITION}</span>
++ ++[--<++]-- <-]>
+
+<span class="bf-comment">Input Replacement B=3 (1 '3')</span>
+>>> <span class="bf-placeholder">{POSITION}</span>
+[ +[-<+]- >>+ ++[-->++]-- <+>
+>>> <span class="bf-placeholder">{POSITION}</span>
+-] ++[--<++]-- <[ ++[-->++]--
+>>> <span class="bf-placeholder">{POSITION}</span>
++ ++[--<++]-- <-]>
+
+<span class="bf-comment">NAND Operation & Storing Result (at 4)</span>
++[-<+]-> >>+<<[>[>->]] +[-<+]- >>>[ ++[-->++]--
+>>>> <span class="bf-placeholder">{OUTPUT}</span>
++ +[-<+]- >>>-] <[-]<[-] ++[-->++]--
+
+<span class="bf-comment">    · · · · · · · THIRD ITERATION (2 3 = 5) · · · · · · ·
+    
+Input Replacement A=2 ('2' 3)</span>
+>> <span class="bf-placeholder">{POSITION}</span>
+[ +[-<+]- >+ ++[-->++]-- <+>
+>> <span class="bf-placeholder">{POSITION}</span>
+-] ++[--<++]-- <[ ++[-->++]--
+>> <span class="bf-placeholder">{POSITION}</span>
++ ++[--<++]-- <-]>
+
+<span class="bf-comment">Input Replacement B=3 (2 '3')</span>
+>>> <span class="bf-placeholder">{POSITION}</span>
+[ +[-<+]- >>+ ++[-->++]-- <+>
+>>> <span class="bf-placeholder">{POSITION}</span>
+-] ++[--<++]-- <[ ++[-->++]--
+>>> <span class="bf-placeholder">{POSITION}</span>
++ ++[--<++]-- <-]>
+
+<span class="bf-comment">NAND Operation & Storing Result (at 5)</span>
++[-<+]-> >>+<<[>[>->]] +[-<+]- >>>[ ++[-->++]--
+>>>>> <span class="bf-placeholder">{OUTPUT}</span>
++ +[-<+]- >>>-] <[-]<[-] ++[-->++]--
+
+<span class="bf-comment">    · · · · · · · FOURTH ITERATION (4 5 = 6) · · · · · · ·
+    
+Input Replacement A=4 ('4' 3)</span>
+>>>> <span class="bf-placeholder">{POSITION}</span>
+[ +[-<+]- >+ ++[-->++]-- <+>
+>>>> <span class="bf-placeholder">{POSITION}</span>
+-] ++[--<++]-- <[ ++[-->++]--
+>>>> <span class="bf-placeholder">{POSITION}</span>
++ ++[--<++]-- <-]>
+
+<span class="bf-comment">Input Replacement B=5 (4 '5')</span>
+>>>>> <span class="bf-placeholder">{POSITION}</span>
+[ +[-<+]- >>+ ++[-->++]-- <+>
+>>>>> <span class="bf-placeholder">{POSITION}</span>
+-] ++[--<++]-- <[ ++[-->++]--
+>>>>> <span class="bf-placeholder">{POSITION}</span>
++ ++[--<++]-- <-]>
+
+<span class="bf-comment">NAND Operation & Storing Result (at 6)</span>
++[-<+]-> >>+<<[>[>->]] +[-<+]- >>>[ ++[-->++]--
+>>>>>> <span class="bf-placeholder">{OUTPUT}</span>
++ +[-<+]- >>>-] <[-]<[-] ++[-->++]--
+
+<span class="bf-comment">    · · · · · · · · · · SHOW RESULTS · · · · · · · · · ·</span>
+    
+>>>>>> <span class="bf-placeholder">{FINAL OUTPUT}</span> <span class="bf-comment">(6)</span>
+>++++++++[<++++++>-]<.</code></pre> 
+    </div>
+    <div>
+        <p>Voilà! A few minutes of your life are now gone forever because you decided to read this!
+            And your only compensation is a really weird, improbably useful, time-wasting, nearly impossible to understand XOR logic gate.
+            If you're not sure about what to do with this code, go <a href="https://copy.sh/brainfuck/" target="_blank">here</a>,
+            paste it and write some input pair like '\0\0' or '\1\0'. 
+        </p>
+    </div>
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2023 Alexander73 | No rights reserved | <a href="../tos.html">Terms of Service</a></p>
+            <p>Made with the power of love and ChatGPT. Mostly ChatGPT.</p>
+        </div>
+    </footer>
+</body>

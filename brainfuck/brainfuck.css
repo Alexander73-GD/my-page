@@ -1,0 +1,57 @@
+h1 {
+    margin-bottom: 50px;
+}
+
+.brainfuck {
+    font-family: monospace;
+}
+
+#hidden-brainfuck::after {
+    content: " (brainfuck)";
+    display: none;
+}
+#hidden-nor::after {
+    content: " (NOR.bf)";
+    display: none;
+}
+#hidden-brainfuck:hover::after, #hidden-nor:hover::after {
+    display: inline-block;
+}
+
+.code {
+    position: relative;
+    left: 20%;
+    background-color: #222;
+    max-width: 60%;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+}
+
+pre {
+    font-family: monospace;
+    white-space: pre-wrap;
+    color: white;
+    margin: 0;
+    font-size: 16px;
+}
+
+.instructions {
+    margin-top: 20px;
+    font-size: 18px;
+    text-align: justify;
+}
+
+.bf-comment {
+    color: #008000;
+}
+.bf-placeholder {
+    color: #888888;
+}
+
+.gates {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

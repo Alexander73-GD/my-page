@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Brainfuck</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&amp;display=swap">
+    <link rel="stylesheet" href="../style.css">  
+    <link rel="stylesheet" href="brainfuck.css"> 
+</head>
+<body>
+    <a href="../index.html" class="go-back-link"> &lt; Go Back</a>
+    <h1 id="hidden-brainfuck" class="brainfuck">--[----->+<]>----.[--->+<]>----.+++[->+++<]>++.++++++++.+++++.--------.-[--->+<]>--.+[->+++<]>+.++++++++.</h1>
+    <h2>What is brainfuck?</h2>
+    <p>I'm not Wikipedia, go read it <a href="https://en.wikipedia.org/wiki/Brainfuck" target="_blank">there</a>.</p>
+    <p>I'm here to talk about my NAND template assuming that you're already familiar with logic gates and the language or that you don't care.</p><br>
+    <h2>NAND template</h2>
+    <p>This is my proudest work as of today, and probably forever, because I don't plan to touch this stupid language again.
+        Here's a quick description of the program, but keep in mind that I'm not getting into details, I'll just simplify things to make it understandable. There are more detailed instructions on how to use this at the end.</p>
+    <p>The 3 main components are the <b>preparation</b>, the <b>block</b> and the <b>ending</b>. These are the names I chose after a thoughtful 3 seconds while I wrote this.</p>
+    <p><b>Preparation:</b> here are the inputs of the logic gate, called A and B. By default, they're set to read user input, but they can be changed to ' ' (a blank space) or '+', depending on if you want a 0 or a 1.</p>
+    <p><b>Block:</b> the fun part. Delimited beautifully with lots of dots and uppercase text, is the thing that makes the NAND work. A block is a NAND gate, so if you want more gates, you need to add more blocks to your program.
+        It's divided in three parts: getting the first input, getting the second input, doing the operation (which is a really simple <span class="brainfuck">>>+<< [>[>->]]</span>) and saving the result.</p>
+    <p><b>Ending:</b> just a bit of code to save the output, 0 or 1, and show it.</p><br>
+    <h2>Finally, the thing:</h2>
+    <div class="code">
+        <pre>
+<code>->>>>>>>>>>>-->
+,<span class="bf-comment">   Input A</span>
+>
+,<span class="bf-comment">   Input B</span>
+<<
+
+<span class="bf-comment">· · · · · · · · · · · · · · · · · · · · · · · · · BLOCK START
+
+Input Replacement A</span>
+<span class="bf-placeholder">{POSITION}</span>
+[+[-<+]- >+ ++[-->++]-- <+>
+<span class="bf-placeholder">{POSITION}</span>
+-] ++[--<++]-- <[ ++[-->++]--
+<span class="bf-placeholder">{POSITION}</span>
++ ++[--<++]-- < -]
+
+<span class="bf-comment">Input Replacement B</span>
+<span class="bf-placeholder">{POSITION}</span>
+[+[-<+]- >>+ ++[-->++]-- <+>
+<span class="bf-placeholder">{POSITION}</span>
+-] ++[--<++]-- <[ ++[-->++]--
+<span class="bf-placeholder">{POSITION}</span>
++ ++[--<++]-- < -]
+
+<span class="bf-comment">NAND Operation & Storing Result</span>
++[-<+]-> >>+<<[>[>->]] +[-<+]->>>
+[++[-->++]--
+<span class="bf-placeholder">{OUTPUT}</span>
++ +[-<+]- >>>-] <[-]<[-] ++[-->++]--
+
+<span class="bf-comment">· · · · · · · · · · · · · · · · · · · · · · · · BLOCK END</span>
+
+<span class="bf-placeholder">{FINAL OUTPUT}</span>
+>++++++++[<++++++>-]<.</code></pre> 
+    </div>
+    <div class="instructions">
+        <h2>Instructions for use</h2>
+        <p>
+            To make any gate, or any combination of NANDs, you should make some kind of diagram with the inputs and outputs needed (examples in <a href="NOR.html">NOR.bf</a> and <a href="XOR.html">XOR.bf</a>).
+            After that, editing the template will be easier.
+            For each step, you'll be replacing the first input (A), then the second input (B) and finally storing the result (C) at some position in the SVR.
+            Copy the template where you want to, preferably a compiler. I highly recommend <a href="https://copy.sh/brainfuck/" target="_blank">this one</a>. Copy and paste the <b>block</b> as many times as NAND operations you need.
+            Every time you encounter curly brackets (braces) you'll have to add many '<span class="brainfuck">></span>' symbols depending on the placeholder word.
+        </p>
+        <p>There are 3 types of placeholders:
+            <ul>
+                <li><b>{POSITION}</b> is the position of the cell in the SVR where the value you need to replace an input with is stored.</li>
+                <li><b>{OUTPUT}</b> is the position of the cell in the SVR where the output of a NAND operation will be stored.</li>
+                <li><b>{FINAL OUTPUT}</b> is the position of the cell in the SVR where the final output is stored.</li>
+            </ul>
+            <h3>Glossary:</h3>
+            <ul>
+                <li><b>Flag</b>: special cell used for pointer control that makes things easier, especially when combined with the following concept.</li>
+                <li><b>Glider</b>: a simple yet incredible idea I saw in mitxela's <a href="https://www.youtube.com/watch?v=qK0vmuQib8Y" target="_blank">AI in Brainfuck</a> video.</li>
+                <li><b>Stored Values Row (SVR)</b>: this is how I decided to call the second row of the memory in a display of 12 cells per row. This is where the first two inputs and the results of each operation will be saved.</li>
+            </ul>
+
+    </div>
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2023 Alexander73 | No rights reserved | <a href="../tos.html">Terms of Service</a></p>
+            <p>Made with the power of love and ChatGPT. Mostly ChatGPT.</p>
+        </div>
+    </footer>
+</body>
