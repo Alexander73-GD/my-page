@@ -31,7 +31,10 @@
             <h3>FACT 2</h3>
             <p>I like <a class="hidden-link" href="https://en.wikipedia.org/wiki/Tomato" target="_blank">tomatoes</a>.</p>
             <p>This was a placeholder while I made the web but it deserves the spot. Look at them, they're delicious. I like to grab them and bite them like normal people do with apples.</p>
-            <img src="img/tomatoes.png" width="300" height="200">
+            <div class="tomatoes">
+                <img id="tomatoImage" src="img/tomatoes/toma1.png">
+            </div>       
+            <audio id="tomatoSound" src="img/tomatoes/nom1.mp3"></audio>  
         </div>
         <div class="fact">
             <h3>toki pona</h3>
@@ -64,4 +67,31 @@
             <p>Made with the power of love and ChatGPT. Mostly ChatGPT.</p>
         </div>
     </footer>
+
+    <script>
+        let currentImage = 1;
+        const maxImages = 22;
+        let finished = false;
+        document.getElementById('tomatoImage').addEventListener('click', function() {
+            if (currentImage < maxImages) {       
+                const randomSoundNumber = Math.floor(Math.random() * 6) + 1;
+                const audioElement = document.getElementById('tomatoSound');
+                audioElement.src = `img/tomatoes/nom${randomSoundNumber}.mp3`;
+                audioElement.play();    
+                currentImage++;
+                console.log(currentImage);
+                console.log(audioElement);
+            }
+            if (currentImage == maxImages) {
+                this.style.cursor = "default";   
+                if (!finished) {
+                    const audioElement = document.getElementById('tomatoSound');
+                    audioElement.src = `img/tomatoes/nom10.mp3`;
+                    audioElement.play();
+                    finished = true;
+                }                  
+            }
+            this.src = `img/tomatoes/toma${currentImage}.png`;
+        });
+    </script>
 </body>
