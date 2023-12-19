@@ -75,5 +75,4 @@ function load() {
             textChangeCounter++;
         }, 100);
     }
-
 }

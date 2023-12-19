@@ -45,6 +45,11 @@
             </p>
         </div>
         <div class="fact">
+            <h3>Self-destruct button (do not press)</h3>
+            <p>Do not press that.</p>
+            <button class="self-destruct" onclick="selfDestruct()">Do not press this.</button>
+        </div>
+        <div class="fact">
             <h3>Youtube channels</h3>
             <p>I also have two Youtube channels. My
                 <a href="https://www.youtube.com/@Alexander73_GD" target="_blank">main channel</a>,
@@ -69,6 +74,15 @@
     </footer>
 
     <script>
+        function selfDestruct() {
+            let counter = 0;
+            console.log("hey let's gonna count to infinity")
+            while (true) {
+                counter++;
+                console.log(counter);
+            }
+        }
+
         let currentImage = 1;
         const maxImages = 22;
         let finished = false;
